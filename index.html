@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Rasali ♡</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(
+        rgba(255,192,203,0.25),
+        rgba(255,182,193,0.35)
+    ), url('image1.jpg');
+
+    background-color: #ffc6df;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+.card {
+    position: relative;
+    z-index: 2;
+    width: 92%;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 35px;
+    background: rgba(255,245,250,0.90);
+    backdrop-filter: blur(12px);
+    border: 2px solid white;
+    border-radius: 35px;
+    text-align: center;
+    box-shadow: 0 0 50px #ff69b470;
+    animation: appear 1.5s ease;
+}
+
+.emoji {
+    font-size: 55px;
+}
+
+.subtitle {
+    color: #b84d80;
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-top: 15px;
+}
+
+h1 {
+    color: #e84393;
+    font-size: 40px;
+    margin-bottom: 0;
+}
+
+.name {
+    font-family: cursive;
+    font-size: 65px;
+    color: #d63384;
+    margin: 5px 0 20px;
+    text-shadow: 2px 3px white;
+}
+
+h2 {
+    color: #d63384;
+    font-size: 28px;
+}
+
+p {
+    color: #75445c;
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.line {
+    width: 70px;
+    height: 3px;
+    border-radius: 10px;
+    background: #ff85b3;
+    margin: 30px auto;
+}
+
+/* Memory gallery */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    padding: 15px 5px;
+}
+
+.polaroid {
+    background: white;
+    padding: 10px 10px 18px;
+    box-shadow: 0 5px 15px #d6338430;
+    border-radius: 5px;
+    transform: rotate(-3deg);
+    transition: 0.4s;
+}
+
+.polaroid:nth-child(even) {
+    transform: rotate(3deg);
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.08);
+    z-index: 5;
+}
+
+.polaroid img {
+    width: 100%;
+    aspect-ratio: 1 / 1.15;
+    object-fit: cover;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.polaroid span {
+    display: block;
+    font-family: cursive;
+    font-size: 15px;
+    color: #b84d80;
+    margin-top: 10px;
+}
+
+/* Future doctor section */
+
+.doctor {
+    background: linear-gradient(135deg, #ffe4ef, #fff5fa);
+    border: 1px solid #ffc1da;
+    padding: 25px;
+    border-radius: 25px;
+    margin: 30px 0;
+}
+
+.doctor-icon {
+    font-size: 50px;
+}
+
+.ohana {
+    background: #ffd9e9;
+    padding: 25px;
+    border-radius: 20px;
+    color: #b83280;
+    font-style: italic;
+    line-height: 1.8;
+    margin: 25px 0;
+}
+
+button {
+    background: linear-gradient(135deg, #ff85b3, #e84393);
+    color: white;
+    border: none;
+    border-radius: 35px;
+    padding: 16px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px #ff69b480;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.07);
+}
+
+#surprise {
+    display: none;
+    background: #fff0f7;
+    border: 2px dashed #ff9bc6;
+    border-radius: 25px;
+    padding: 25px;
+    margin-top: 25px;
+    animation: appear 1s ease;
+}
+
+.footer {
+    margin-top: 35px;
+    color: #d63384;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+/* Floating hearts */
+
+.heart {
+    position: fixed;
+    bottom: -60px;
+    pointer-events: none;
+    z-index: 1;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Full screen photo viewer */
+
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(45,10,30,0.92);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    border: 5px solid white;
+    border-radius: 15px;
+}
+
+/* Mobile view */
+
+@media (max-width: 600px) {
+
+    .card {
+        padding: 22px;
+        margin: 20px auto;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .name {
+        font-size: 50px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        scroll-behavior: auto !important;
+    }
+
+    .heart {
+        display: none;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="emoji">🎀💗🌸</div>
+
+    <div class="subtitle">
+        TODAY IS ALL ABOUT YOU
+    </div>
+
+    <h1>Happy Birthday, Bestie!</h1>
+
+    <div class="name">Rasali ♡</div>
+
+    <p>
+        Happy birthday to my favourite human in the world,
+        my bestie, and one of the most special people
+        in my life.
+    </p>
+
+    <p>
+        I don't think I tell you enough how grateful
+        I am to have you in my life. Thank you for
+        always being there for me, listening to my
+        endless stories, tolerating my nonsense,
+        and staying by my side through everything.
+    </p>
+
+    <p>
+        Whether it's a good day, a bad day,
+        or just another ordinary day,
+        having you around makes everything a little better.
+        Some people come and go, but I hope
+        you're one of those people who stays forever.
+    </p>
+
+    <p>
+        I may not always express it, but your friendship
+        means more to me than you probably realise.
+        I'm genuinely lucky to have a bestie like you.
+        💗
+    </p>
+
+    <div class="line"></div>
+
+    <p>
+        A few little moments that I hope
+        we'll never forget.
+    </p>
+
+    <div class="gallery">
+
+        <div class="polaroid">
+            <img src="image2.jpg"
+                 alt="Our first memory"
+                 onclick="openPhoto(this.src)">
+            <span>My favourite human ♡</span>
+        </div>
+
+        <div class="polaroid">
+            <img src="image3.jpg"
+                 alt="Our second memory"
+                 onclick="openPhoto(this.src)">
+            <span>Little happy moments</span>
+        </div>
+
+        <div class="polaroid">
+            <img src="image4.jpg"
+                 alt="Our third memory"
+                 onclick="openPhoto(this.src)">
+            <span>Partners in nonsense</span>
+        </div>
+
+        <div class="polaroid">
+            <img src="image5.jpg"
+                 alt="Our fourth memory"
+                 onclick="openPhoto(this.src)">
+            <span>Unforgettable days</span>
+        </div>
+
+        <div class="polaroid">
+            <img src="image6.jpg"
+                 alt="Our fifth memory"
+                 onclick="openPhoto(this.src)">
+            <span>Forever grateful</span>
+        </div>
+
+        <div class="polaroid">
+            <img src="image7.jpg"
+                 alt="Our sixth memory"
+                 onclick="openPhoto(this.src)">
+            <span>More memories to come ♡</span>
+        </div>
+
+    </div>
+
+    <div class="line"></div>
+
+    <div class="doctor">
+
+        <div class="doctor-icon">🩺👩🏻‍⚕️💗</div>
+
+        <h2>To My Future Dr. Rasali</h2>
+
+        <p>
+            More than anything, I hope you achieve
+            everything you've been working so hard for.
+        </p>
+
+        <p>
+            I hope you become not just a successful doctor,
+            but a truly good doctor who makes people feel
+            safe, understood and cared for.
+            Never lose that kind heart of yours.
+        </p>
+
+        <p>
+            I know the journey won't always be easy.
+            There will be sleepless nights, stressful exams
+            and days when you doubt yourself.
+            But please never give up on your dream.
+        </p>
+
+        <p>
+            I believe in you, even on the days
+            when you don't believe in yourself.
+        </p>
+
+        <p>
+            One day, when you're wearing that white coat
+            with your stethoscope, I'll be proudly saying,
+            "That's my bestie!"
+        </p>
+
+        <h3 style="color:#d63384;">
+            Make yourself proud, future doctor! ♡
+        </h3>
+
+    </div>
+
+    <p>
+        May this new chapter of your life bring you
+        happiness, peace, success, good health,
+        beautiful memories and all the pink Stitch
+        things your heart desires.
+    </p>
+
+    <p>
+        Keep smiling, keep dreaming,
+        and keep being the amazing person you are.
+    </p>
+
+    <button id="surpriseButton"
+            onclick="showSurprise()">
+        One Last Thing... 🎁
+    </button>
+
+    <div id="surprise">
+
+        <div style="font-size:45px;">🥹💗🎀</div>
+
+        <h2>A Little Reminder</h2>
+
+        <p>
+            Life is going to change.
+            We'll get busier, grow older,
+            meet new people and follow our own dreams.
+        </p>
+
+        <p>
+            But no matter where life takes us,
+            I hope we never become strangers
+            with memories.
+        </p>
+
+        <p>
+            Thank you for being the person
+            who always stayed with me.
+            And just like you've been there for me,
+            I hope you know that I'll be there
+            for you too.
+        </p>
+
+        <p>
+            In this lifetime, I'm really glad
+            our paths crossed.
+        </p>
+
+        <h2>
+            Happy Birthday, Rasali! 🎂
+        </h2>
+
+        <p>
+            Be happy.<br>
+            Be successful.<br>
+            Be a good doctor.<br>
+            And don't forget your bestie!
+        </p>
+
+        <h3 style="color:#e84393;">
+            Love you, idiot! 💗
+        </h3>
+
+        <div style="font-size:40px;">
+            🌷🎀💗🧸
+        </div>
+
+    </div>
+
+    <div class="footer">
+        MADE WITH LOVE, FOR MY BESTIE ♡
+    </div>
+
+</div>
+
+<div id="lightbox" onclick="closePhoto()">
+    <img id="largePhoto" src="" alt="Memory">
+</div>
+
+<script>
+
+const symbols = ["💗", "💕", "🎀", "🌸", "💖", "✨"];
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerText = symbols[
+        Math.floor(Math.random() * symbols.length)
+    ];
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+        Math.random() * 20 + 15 + "px";
+
+    heart.style.animationDuration =
+        Math.random() * 4 + 4 + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 8500);
+}
+
+if (!window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+).matches) {
+    setInterval(createHeart, 400);
+}
+
+function showSurprise() {
+
+    const surprise = document.getElementById("surprise");
+
+    surprise.style.display = "block";
+
+    document.getElementById("surpriseButton")
+        .style.display = "none";
+
+    for (let i = 0; i < 60; i++) {
+        setTimeout(createHeart, i * 40);
+    }
+
+    surprise.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+function openPhoto(src) {
+
+    document.getElementById("largePhoto").src = src;
+
+    document.getElementById("lightbox")
+        .style.display = "flex";
+}
+
+function closePhoto() {
+
+    document.getElementById("lightbox")
+        .style.display = "none";
+}
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        closePhoto();
+    }
+});
+
+</script>
+
+</body>
+</html>
